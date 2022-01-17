@@ -1,0 +1,101 @@
+
+    
+<div class="row container justify-content-center " style="margin-top: 2rem; margin-left: 5rem;">
+
+    <h2>Registro de disponibilidad</h2>    
+    <hr/>
+      <div class="col">
+        <form autocomplete="off" [formGroup]="formDisponibilidad" (ngSubmit)="registerDisp()">
+         
+          <!--medico-->
+          <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Seleccione el medico</label>
+             <div class="col-sm-6">
+               <select class="form-select" aria-label="Default select example" formControlName="idUsuario" >
+                 <option value="undefined" disabled selected > Seleccione al medico</option>
+                 <option *ngFor="let data of userData" selected="capturar()" [value]="data.idUsuario">{{data.nombre}}</option>
+               </select>
+             </div>
+          </div>
+          <div>
+          </div>
+
+          <!--Dia de las semanas disponibles-->
+          <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Seleccione el dia </label>
+             <div class="col-sm-6">
+               <select class="form-select" aria-label="Default select example" formControlName="dia" >
+                 <option value="undefined" disabled selected > Seleccione el dia</option>
+                 <option >Lunes</option>
+                 <option >Martes</option>
+                 <option >Miercoles</option>
+                 <option >Jueves</option>
+                 <option >Viernes</option>
+                 <option >Sabado</option>
+                 <option >Domingo</option>
+               </select>
+             </div>
+          </div>
+   
+          <!-- Horas -->
+          <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Hora inicio</label>
+             <div class="col-sm-6">
+              <input class="form-control"
+               formControlName="horaInicio"
+              type="time"
+              required>
+      
+             </div>
+             <div class="col-sm-3 col-form-label " *ngIf="formDisponibilidad.value.horaInicio.substr(0,2)<12">
+              <label class="col-sm-3 col-form-label ">am</label>
+             </div>
+              <div class="col-sm-3 col-form-label " *ngIf="formDisponibilidad.value.horaInicio.substr(0,2)>=12">
+                <label class="col-sm-3 col-form-label ">pm</label>
+  
+             </div>
+          </div>
+  
+          <!-- Hora Fin -->
+          <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Hora Fin</label>
+             <div class="col-sm-6">
+              <input class="form-control"
+              formControlName="horaFin"
+              type="time"
+              placeholder="hrs:mins" 
+              min
+              ="09:00" max="18:00"  
+              >
+             </div>
+             
+             <div class="col-sm-3 col-form-label " *ngIf="formDisponibilidad.value.horaFin.substr(0,2)<12">
+              <label class="col-sm-3 col-form-label ">am</label>
+             </div>
+              <div class="col-sm-3 col-form-label " *ngIf="formDisponibilidad.value.horaFin.substr(0,2)>12">
+                <label class="col-sm-3 col-form-label ">pm</label>
+              </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-sm-9">
+                <button type="submit"
+                        class="btn btn-primary float-end" [disabled]="formDisponibilidad.invalid">
+                    Guardar
+                </button>
+               </div>
+               
+               <div class="col-sm-9" style="margin-top: 2rem;">
+                <button type="submit"
+                        class="btn btn-primary float-end"  routerLink="/dashboard">
+                    Regresar
+                </button>
+              </div>
+  
+        </div>
+       
+        
+         </form>
+      </div>
+  </div>
+  

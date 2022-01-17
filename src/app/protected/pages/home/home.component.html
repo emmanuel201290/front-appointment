@@ -1,0 +1,23 @@
+<form class="login100-form" autocomplete="off" [formGroup]="formInit" (ngSubmit)="logout()">
+<div class="row mt-5 container">
+    <div class="col-4">
+      <h2>Menu de opciones</h2>
+      <hr />
+      <ul class="list-group">
+        <li
+          *ngFor="let item of templateMenu"
+          class="list-group-item"
+          style="margin-bottom: 1rem;"
+          [routerLink]="[item.ruta]"
+          routerLinkActive="active"
+        >
+          {{ item.texto }}
+        </li>
+      </ul>
+      <hr>
+      <button type="submit" class="btn btn-danger col-12" (click)="logout()">Cerrar sesion</button>
+    </div>
+ 
+    <router-outlet></router-outlet>
+  </div>
+</form>

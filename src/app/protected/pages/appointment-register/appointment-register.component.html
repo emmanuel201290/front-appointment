@@ -1,0 +1,92 @@
+
+    
+<div class="row container justify-content-center " style="margin-top: 2rem; margin-left: 5rem;">
+
+  <h2>Registro de citas</h2>    
+  <hr/>
+    <div class="col">
+      <form autocomplete="off" [formGroup]="formAppointment" (ngSubmit)="registerAppointment()">
+        
+        <!--medico-->
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Seleccione el medico</label>
+           <div class="col-sm-6">
+             <select class="form-select" aria-label="Default select example" formControlName="idMedico" >
+               <option value="undefined" disabled selected > Seleccione al medico</option>
+               <option *ngFor="let data of userData" [value]="data.idUsuario">{{data.nombre}}</option>
+             </select>
+           </div>
+        </div>
+        <div>
+        </div>
+ 
+        <!-- Horas -->
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Hora inicio</label>
+           <div class="col-sm-6">
+            <input class="form-control"
+             formControlName="horaInicio"
+            type="time"
+            required>
+    
+           </div>
+           <div class="col-sm-3 col-form-label " *ngIf="formAppointment.value.horaInicio.substr(0,2)<12">
+            <label class="col-sm-3 col-form-label ">am</label>
+           </div>
+            <div class="col-sm-3 col-form-label " *ngIf="formAppointment.value.horaInicio.substr(0,2)>=12">
+              <label class="col-sm-3 col-form-label ">pm</label>
+         </div>
+        </div>
+
+        <!-- Hora Fin -->
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Hora Fin</label>
+           <div class="col-sm-6">
+            <input class="form-control"
+            formControlName="horaFin"
+            type="time"
+            placeholder="hrs:mins" 
+            min
+            ="09:00" max="18:00"  
+            >
+           </div>
+           
+           <div class="col-sm-3 col-form-label " *ngIf="formAppointment.value.horaFin.substr(0,2)<12">
+            <label class="col-sm-3 col-form-label ">am</label>
+           </div>
+            <div class="col-sm-3 col-form-label " *ngIf="formAppointment.value.horaFin.substr(0,2)>12">
+              <label class="col-sm-3 col-form-label ">pm</label>
+         </div>
+           
+        </div>
+         <!--Anio-->
+         <div class="mb-3 row">
+          <div class="col-sm-6">
+           <mat-form-field appearance="fill">
+             <label class="col-sm-12 col-form-label">Fecha de visita: </label>
+             <input matInput [matDatepicker]="picker" style="color: brown;" formControlName="fechaVisita" placeholder="DOB(DD/MM/YYYY)" >
+             <mat-datepicker-toggle matSuffix [for]="picker" style="color: black;"></mat-datepicker-toggle>
+             <mat-datepicker #picker></mat-datepicker>
+           </mat-form-field>
+          </div>
+       </div> 
+
+       <div class="row">
+          <div class="col-sm-9">
+              <button type="submit"
+                      class="btn btn-primary float-end" [disabled]="formAppointment.invalid">
+                  Guardar
+              </button>
+             </div>
+             
+             <div class="col-sm-9" style="margin-top: 2rem;">
+              <button type="submit"
+                      class="btn btn-primary float-end"  routerLink="/dashboard">
+                  Regresar
+              </button>
+            </div>
+
+      </div>      
+       </form>
+    </div>
+</div>

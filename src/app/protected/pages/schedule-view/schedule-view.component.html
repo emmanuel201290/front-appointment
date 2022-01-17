@@ -1,0 +1,59 @@
+<div class="row mt-5 container justify-content-center">
+    <div class="col">
+      <h2 class="row justify-content-center">Ver horarios disponibles</h2>
+      <hr />
+      <form autocomplete="off" [formGroup]="formScheduleView" (ngSubmit)="getDispinibilidadView()">
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label">Seleccione el medico</label>
+           <div class="col-sm-3">
+             <select class="form-select" aria-label="Default select example" formControlName="idMedico" >
+               <option value="undefined" disabled selected > Seleccione al medico</option>
+               <option *ngFor="let data of userData" [value]="data.idUsuario">{{data.nombre}}</option>
+             </select>
+           </div>
+           <div class="col-sm-1">
+            <button type="submit"
+            class="btn btn-primary float-end" [disabled]="formScheduleView.invalid">
+               Buscar
+            </button>
+           </div>
+           <div class="col-sm-1">
+            <button type="button" class="btn btn-primary" routerLink="/dashboard">
+              Regresar
+            </button>
+           </div>
+        </div>
+
+        <div class="row mt-5 container justify-content-center">
+            <div class="col">
+              <h2 class="row justify-content-center">Ver listado de citas</h2>
+              <hr />
+          
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Dia</th>
+                    <th scope="col">Horario Inicio</th>
+                    <th scope="col">Horario Fin</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let sched of schedule">
+                  <tr>
+                    <th scope="row">1</th>
+                    <th scope="row">{{sched.dia}}</th>
+                    <th scope="row">{{sched.horaInicio}}</th>
+                    <th scope="row">{{sched.horaFin}}</th>
+                  </tr>
+                </tbody>
+                
+              </table>
+            </div>
+          </div>
+          
+        
+
+      </form>
+    </div>
+  </div>
+  
